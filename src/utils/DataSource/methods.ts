@@ -9,6 +9,10 @@ export function getSport(sportName: SportName){
   return sports[sportName];
 }
 
+export function getAllSports(){
+  return sports;
+}
+
 export function addPlayer(player: Player){
   players.push(player)
 }

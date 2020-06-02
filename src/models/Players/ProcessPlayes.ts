@@ -5,7 +5,8 @@ import {
   SportName,
   Player,
   BasketballPlayer,
-  HandballPlayer
+  HandballPlayer,
+  Match
 } from 'config/types';
 import { addPlayer, getAllPlayers, getSport } from 'utils/DataSource/methods';
 
@@ -16,7 +17,15 @@ export function loadAllPlayers() {
 export function savePlayerData(matchName: string, line: string, sportName: SportName) {
   const player = playerFactory(line, sportName)
   const sport = getSport(sportName)
-  const match = sport.matches[matchName]
+  let match = sport.matches[matchName]
+  if (!match) {
+    match = {
+      matchName,
+      players: [],
+      sportName
+    } as Match
+    sport.matches[matchName] = match
+  }
   match.players.push(player)
   return player.nickname
 }
@@ -30,10 +39,11 @@ function validatePlayerData(playerData: string[], sportName: SportName): Player 
   if (!playerData || !playerData.length) {
     throw new Error(`Failed reading player data: ${playerData.join()}`)
   }
-  const playerName = validateStringValue(playerData[0])
-  const nickname = validateStringValue(playerData[1])
+  console.log(playerData)
+  const playerName = validateStringValue(playerData[0], 'playerName')
+  const nickname = validateStringValue(playerData[1], 'nickname')
   const jerseyNumber = validateNumberValue(playerData[2])
-  const teamName = validateStringValue(playerData[3])
+  const teamName = validateStringValue(playerData[3], 'teamName')
   const position = validatePlayerPosition(sportName, playerData[4])
   const performanceData = calculatePerformanceData(sportName, position, playerData)
   return {

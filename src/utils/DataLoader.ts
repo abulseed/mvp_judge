@@ -1,6 +1,8 @@
 export function loadDataFromSource(
-  source: (processor?: (input: string) => void) => void,
-  processor: (input: string) => void
+  source: (
+    processor: (sourceName: string) => (input: string, index?: number) => void
+  ) => void,
+  processor: (sourceName: string) => (input: string, index?: number) => void
 ) {
   source(processor)
 }

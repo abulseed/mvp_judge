@@ -1,9 +1,9 @@
 import { BASKETBALL_POSITION, HANDBALL_POSITION, SPORTS } from 'config/constants'
 import { SportName, BasketballPosition, HandballPosition } from 'config/types'
 
-export function validateStringValue(value: any) {
+export function validateStringValue(value: any, msg?: string) {
   if (!value || typeof value !== 'string') {
-    throw new Error(`Invalid string value: ${value}`)
+    throw new Error(`Invalid string value: ${value}. ${msg}`)
   }
   return value as string
 }
