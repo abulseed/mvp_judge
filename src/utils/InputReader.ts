@@ -6,12 +6,8 @@ const rootDir = path.join(__dirname, '/../input/')
 export function readAllInputFiles(
   processInputLine: (sourceName: string) => (line: string, index?: number) => void
 ) {
-  fs.readdir(rootDir, function (err, filenames) {
-    if (err) {
-      throw new Error(`Failed reading directory: ${rootDir}`)
-    }
-    filenames.forEach(readInputFile(processInputLine));
-  });
+  const filenames = fs.readdirSync(rootDir)
+  filenames.forEach(readInputFile(processInputLine))
 }
 
 function readInputFile(

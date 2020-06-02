@@ -2,12 +2,12 @@
   "name": "mvp_calc",
   "version": "1.0.0",
   "description": "MVP calculator",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "author": "Ahmed elSayed",
   "license": "ISC",
   "scripts": {
-    "start": "npm run build && node build/index.js",
-    "dev": "nodemon",
+    "start": "export NODE_PATH=./src && npm run build && node build/index.js",
+    "dev": "export NODE_PATH=./src && nodemon",
     "build": "rimraf ./build && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
