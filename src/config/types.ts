@@ -13,6 +13,12 @@ export interface Player {
   nickname: string;
   jerseyNumber: number;
   team: Team;
+  overallRating: number;
+}
+
+export interface PlayerResult {
+  overall: number;
+  teamPoints: number;
 }
 
 export interface BasketballPlayer extends Player {

@@ -1,42 +1,38 @@
-import { Sport, Player, Match, Team, SportName } from 'config/types';
-import { sports, players, matches, teams } from './variables';
+import { Sport, Player, Match, SportName } from 'config/types';
+import { sports } from './variables';
 
-export function addSport(sport: Sport){
+export function addSport(sport: Sport) {
   sports[sport.sportName] = sport
 }
 
-export function getSport(sportName: SportName){
+export function getSport(sportName: SportName) {
   return sports[sportName];
 }
 
-export function getAllSports(){
+export function getAllSports() {
   return sports;
 }
 
-export function addPlayer(player: Player){
-  players.push(player)
+export function addPlayer(player: Player, sportName: SportName, matchName: string) {
+  let match = addMatch(sportName, matchName)
+  match.players.push(player)
 }
 
-export function getPlayer(nickname: string){
-  return players.find(p => p.nickname === nickname)
+export function addMatch(sportName: SportName, matchName: string) {
+  const sport = getSport(sportName)
+  let match = sport.matches[matchName]
+  if (!match) {
+    match = {
+      matchName,
+      players: [],
+      sportName
+    } as Match
+    sport.matches[matchName] = match
+  }
+  return match
 }
 
-export function getAllPlayers(){
-  return players;
-}
-
-export function addMatch(match: Match){
-  matches.push(match)
-}
-
-export function getAllMatches(){
-  return matches;
-}
-
-export function getMatchesBySport(sportName: SportName){
-  return matches.slice().filter(match => match.sportName === sportName)
-}
-
-export function addTeam(team: Team){
-  teams[team.teamName] = team
+export function getAllMatches(sportName: SportName) {
+  const sport = getSport(sportName)
+  return Object.keys(sport.matches).map(key => sport.matches[key]);
 }

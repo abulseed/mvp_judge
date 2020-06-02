@@ -1,6 +1,6 @@
-import { Match } from 'config/types';
-import { addMatch } from 'utils/DataSource/methods';
+import { SportName } from 'config/types';
+import { getAllMatches } from 'utils/DataSource/methods';
 
-export function saveMatchData(match: Match) {
-  addMatch(match);
+export function loadAllMatches(sportName: SportName){
+  return getAllMatches(sportName)
 }
