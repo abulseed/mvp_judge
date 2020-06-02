@@ -1,6 +1,6 @@
 import { SportName } from "config/types";
-import { saveSportData } from "models/Sports/ProcessSports";
-import { savePlayerData } from "models/Players/ProcessPlayes";
+import { saveSportData } from "models/SportModel";
+import { savePlayerData } from "models/PlayerModel";
 import { loadDataFromSource } from "utils/DataLoader";
 import { readAllInputFiles } from "utils/InputReader";
 

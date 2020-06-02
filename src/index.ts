@@ -1,4 +1,4 @@
-import { calculateBasketballPlayerRating, calculateHandballPlayerRating } from 'models/Sports/ProcessSports';
+import { calculateBasketballPlayerRating, calculateHandballPlayerRating } from 'models/SportModel';
 import { startSeedingData } from 'controllers/DataSeeder';
 import { mvpOfSport } from 'controllers/Judge';
 

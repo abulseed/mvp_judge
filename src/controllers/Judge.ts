@@ -1,5 +1,5 @@
 import { Match, SportName, Player, PlayerResult } from "config/types";
-import { loadAllMatches } from "models/Matches/ProcessMatches";
+import { loadAllMatches } from "models/MatchModel";
 
 export function mvpOfSport(
   sportName: SportName,
